@@ -40,7 +40,7 @@ uses
 
 const
   LIB_SNDFILE = 'libsndfile-1.dll';
-  SNDFILE_VERSION = 'libsndfile-1.0.26-exp';
+  SNDFILE_VERSION = 'libsndfile-1.0.28-exp';
 
 
 (* This is the version 1.0.X header file. *)
@@ -89,46 +89,46 @@ const
   SF_FORMAT_PCM_16 = $0002; (* Signed 16 bit data *)
   SF_FORMAT_PCM_24 = $0003; (* Signed 24 bit data *)
   SF_FORMAT_PCM_32 = $0004; (* Signed 32 bit data *)
-  
+
   SF_FORMAT_PCM_U8 = $0005; (* Unsigned 8 bit data (WAV and RAW only) *)
-  
+
   SF_FORMAT_FLOAT = $0006; (* 32 bit float data *)
   SF_FORMAT_DOUBLE = $0007; (* 64 bit float data *)
-  
+
   SF_FORMAT_ULAW = $0010; (* U-Law encoded. *)
   SF_FORMAT_ALAW = $0011; (* A-Law encoded. *)
   SF_FORMAT_IMA_ADPCM = $0012; (* IMA ADPCM. *)
   SF_FORMAT_MS_ADPCM = $0013; (* Microsoft ADPCM. *)
-  
+
   SF_FORMAT_GSM610 = $0020; (* GSM 6.10 encoding. *)
   SF_FORMAT_VOX_ADPCM = $0021; (* OKI / Dialogix ADPCM *)
-  
+
   SF_FORMAT_G721_32 = $0030; (* 32kbs G721 ADPCM encoding. *)
   SF_FORMAT_G723_24 = $0031; (* 24kbs G723 ADPCM encoding. *)
   SF_FORMAT_G723_40 = $0032; (* 40kbs G723 ADPCM encoding. *)
-  
+
   SF_FORMAT_DWVW_12 = $0040; (* 12 bit Delta Width Variable Word encoding. *)
   SF_FORMAT_DWVW_16 = $0041; (* 16 bit Delta Width Variable Word encoding. *)
   SF_FORMAT_DWVW_24 = $0042; (* 24 bit Delta Width Variable Word encoding. *)
   SF_FORMAT_DWVW_N = $0043; (* N bit Delta Width Variable Word encoding. *)
-  
+
   SF_FORMAT_DPCM_8 = $0050; (* 8 bit differential PCM (XI only) *)
   SF_FORMAT_DPCM_16 = $0051; (* 16 bit differential PCM (XI only) *)
-  
+
   SF_FORMAT_VORBIS = $0060; (* Xiph Vorbis encoding. *)
-  
+
   SF_FORMAT_ALAC_16 = $0070; (* Apple Lossless Audio Codec (16 bit). *)
   SF_FORMAT_ALAC_20 = $0071; (* Apple Lossless Audio Codec (20 bit). *)
   SF_FORMAT_ALAC_24 = $0072; (* Apple Lossless Audio Codec (24 bit). *)
   SF_FORMAT_ALAC_32 = $0073; (* Apple Lossless Audio Codec (32 bit). *)
-  
+
   (* Endian-ness options. *)
-  
+
   SF_ENDIAN_FILE = $00000000; (* Default file endian-ness. *)
   SF_ENDIAN_LITTLE = $10000000; (* Force little endian-ness. *)
   SF_ENDIAN_BIG = $20000000; (* Force big endian-ness. *)
   SF_ENDIAN_CPU = $30000000; (* Force CPU endian-ness. *)
-  
+
   SF_FORMAT_SUBMASK = $0000FFFF;
   SF_FORMAT_TYPEMASK = $0FFF0000;
   SF_FORMAT_ENDMASK = $30000000;
@@ -143,87 +143,90 @@ const
   SFC_GET_LIB_VERSION = $1000;
   SFC_GET_LOG_INFO = $1001;
   SFC_GET_CURRENT_SF_INFO = $1002;
-  
-  
+
   SFC_GET_NORM_DOUBLE = $1010;
   SFC_GET_NORM_FLOAT = $1011;
   SFC_SET_NORM_DOUBLE = $1012;
   SFC_SET_NORM_FLOAT = $1013;
   SFC_SET_SCALE_FLOAT_INT_READ = $1014;
   SFC_SET_SCALE_INT_FLOAT_WRITE = $1015;
-  
+
   SFC_GET_SIMPLE_FORMAT_COUNT = $1020;
   SFC_GET_SIMPLE_FORMAT = $1021;
-  
+
   SFC_GET_FORMAT_INFO = $1028;
-  
+
   SFC_GET_FORMAT_MAJOR_COUNT = $1030;
   SFC_GET_FORMAT_MAJOR = $1031;
   SFC_GET_FORMAT_SUBTYPE_COUNT = $1032;
   SFC_GET_FORMAT_SUBTYPE = $1033;
-  
+
   SFC_CALC_SIGNAL_MAX = $1040;
   SFC_CALC_NORM_SIGNAL_MAX = $1041;
   SFC_CALC_MAX_ALL_CHANNELS = $1042;
   SFC_CALC_NORM_MAX_ALL_CHANNELS = $1043;
   SFC_GET_SIGNAL_MAX = $1044;
   SFC_GET_MAX_ALL_CHANNELS = $1045;
-  
+
   SFC_SET_ADD_PEAK_CHUNK = $1050;
   SFC_SET_ADD_HEADER_PAD_CHUNK = $1051;
-  
+
   SFC_UPDATE_HEADER_NOW = $1060;
   SFC_SET_UPDATE_HEADER_AUTO = $1061;
-  
+
   SFC_FILE_TRUNCATE = $1080;
-  
+
   SFC_SET_RAW_START_OFFSET = $1090;
-  
+
   SFC_SET_DITHER_ON_WRITE = $10A0;
   SFC_SET_DITHER_ON_READ = $10A1;
-  
+
   SFC_GET_DITHER_INFO_COUNT = $10A2;
   SFC_GET_DITHER_INFO = $10A3;
-  
+
   SFC_GET_EMBED_FILE_INFO = $10B0;
-  
+
   SFC_SET_CLIPPING = $10C0;
   SFC_GET_CLIPPING = $10C1;
-  
+
+  SFC_GET_CUE_COUNT = $10CD;
+  SFC_GET_CUE = $10CE;
+  SFC_SET_CUE = $10CF;
+
   SFC_GET_INSTRUMENT = $10D0;
   SFC_SET_INSTRUMENT = $10D1;
-  
+
   SFC_GET_LOOP_INFO = $10E0;
-  
+
   SFC_GET_BROADCAST_INFO = $10F0;
   SFC_SET_BROADCAST_INFO = $10F1;
-  
+
   SFC_GET_CHANNEL_MAP_INFO = $1100;
   SFC_SET_CHANNEL_MAP_INFO = $1101;
-  
+
   SFC_RAW_DATA_NEEDS_ENDSWAP = $1110;
-  
+
   (* Support for Wavex Ambisonics Format *)
   SFC_WAVEX_SET_AMBISONIC = $1200;
   SFC_WAVEX_GET_AMBISONIC = $1201;
-  
+
   (*
   ** RF64 files can be set so that on-close, writable files that have less
   ** than 4GB of data in them are converted to RIFF/WAV, as per EBU
   ** recommendations.
   *)
   SFC_RF64_AUTO_DOWNGRADE = $1210;
-  
+
   SFC_SET_VBR_ENCODING_QUALITY = $1300;
   SFC_SET_COMPRESSION_LEVEL = $1301;
-  
+
   (* Cart Chunk support *)
   SFC_SET_CART_INFO = $1400;
   SFC_GET_CART_INFO = $1401;
-  
+
   (* Following commands for testing only. *)
   SFC_TEST_IEEE_FLOAT_REPLACE = $6001;
-  
+
   (*
   ** SFC_SET_ADD_* values are deprecated and will disappear at some
   ** time in the future. They are guaranteed to be here up to and
@@ -347,8 +350,8 @@ type
 *)
 
 type
-  sf_count_t = cint;
-  
+  sf_count_t = cint64;
+
 const
   SF_COUNT_MAX = MAXINT;
 
@@ -413,10 +416,33 @@ type
 *)
 
 type
-  SF_EMBED_FILE_INFO= record
+  SF_EMBED_FILE_INFO = record
     offset: sf_count_t;
     length: sf_count_t;
   end;
+
+(*
+** Struct used to retrieve cue marker information from a file
+*)
+
+type
+  SF_CUE_POINT = record
+    indx: cint32;
+    position: cuint32;
+    fcc_chunk: cint32;
+    chunk_start: cint32;
+    block_start: cint32;
+    sample_offset: cuint32;
+    name: array[0..255] of cchar;
+  end;
+
+  SF_CUES_VAR = record
+    cue_count: cuint32;
+    cue_points: array[0..99] of SF_CUE_POINT;
+  end;
+
+  SF_CUES = SF_CUES_VAR;
+
 
 (*
 **    Structs used to retrieve music sample information from a file.
@@ -447,7 +473,6 @@ type
       count: cuint32;
     end;
   end; (* make variable in a sensible way *)
-
 
 
 (* Struct used to retrieve loop information from a file.*)
